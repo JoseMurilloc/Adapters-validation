@@ -19,7 +19,10 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@useCases/*": ["./src/useCases/*"]
+      "@useCases/*": ["./src/useCases/*"],
+      "@adapters/*": ["./src/adapters/*"],
+      "@repositories/*": ["./src/repositories/*"],
+      "@errors/*": ["./src/errors/*"]
     }
   },
   "include": [

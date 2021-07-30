@@ -1,8 +1,7 @@
-import { IUserRepository } from "../../../repositories/user/IUserRepository";
+import { IUserRepository } from "@repositories/user/IUserRepository";
 import { User } from "../../../entities/User";
 import { ICreateSessionDTO } from "./ICreateSessionDTO";
-
-import AppError from "../../../errors/AppError";
+import {AppError} from "@errors/AppError";
 
 class CreateSessionUseCase {
 
@@ -10,9 +9,7 @@ class CreateSessionUseCase {
     private userRepository: IUserRepository,
   ) { }
 
-  async execute(data: ICreateSessionDTO) {
-    return 'user'
-  }
+  async execute(data: ICreateSessionDTO) {}
 }
 
 export { CreateSessionUseCase }
