@@ -1,7 +1,7 @@
 import { IUserRepository } from "../../../repositories/user/IUserRepository";
 import { User } from "../../../entities/User";
 import { ICreateUserDTO } from "./ICreateUserDTO";
-import { ValidateJSUserAdapter } from "../../../adapters/validate/user/adpaterImplementation/ValidateJSUserAdapter";
+import { ValidateJSAdapter } from "../../../adapters/validate/adpaterImplementation/ValidateJSAdapter";
 import AppError from "../../../errors/AppError";
 import { Crypt } from "../../../adapters/crypt";
 
@@ -9,8 +9,8 @@ class CreateUserUseCase {
 
   constructor(
     private userRepository: IUserRepository,
-    private validateAdapter: ValidateJSUserAdapter,
-    private cryptAdapter: Crypt
+    private cryptAdapter: Crypt,
+    private validateAdapter: ValidateJSAdapter,
   ) { }
 
   async execute(data: ICreateUserDTO) {
