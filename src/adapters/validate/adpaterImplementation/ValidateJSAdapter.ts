@@ -2,10 +2,12 @@ import Validator from 'validatorjs';
 import { ICreateUserDTO } from "@useCases/User/CreateUser/ICreateUserDTO";
 import { IValidateUserProtocol } from "../protocol/IValidateUserProtocol";
 import { ICreateSessionDTO } from "@useCases/User/CreateSession/ICreateSessionDTO";
+import { AppError } from '@errors/AppError';
+import { AppValidateError } from '@errors/AppValidateError';
 
 export class ValidateJSAdapter implements IValidateUserProtocol {
 
-  createSessionValidate(data: ICreateSessionDTO): boolean {
+  createSessionValidate(data: ICreateSessionDTO): void {
     const rulesCreateSession = {
       email: 'required|email',
       password: 'required|min:6|string'
@@ -16,15 +18,13 @@ export class ValidateJSAdapter implements IValidateUserProtocol {
       rulesCreateSession,
     );
 
-    if (validation.passes()) {
-      return true
+    if (!validation.passes()) {
+      throw new AppValidateError(validation.errors.errors)
     }
-
-    return false
   }
 
 
-  createUserValidate(data: ICreateUserDTO): boolean {
+  createUserValidate(data: ICreateUserDTO): void {
     const rulesCreateUser = {
       name: 'required',
       email: 'required|email',
@@ -34,13 +34,10 @@ export class ValidateJSAdapter implements IValidateUserProtocol {
     const validation = new Validator(
       data,
       rulesCreateUser,
-      { "required.password": 'You forgot to give a :attribute' }
     );
 
-    if (validation.passes()) {
-      return true
+    if (!validation.passes()) {
+      throw new AppValidateError(validation.errors.errors)
     }
-
-    return false
   }
 }

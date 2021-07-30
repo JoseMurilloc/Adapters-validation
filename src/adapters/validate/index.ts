@@ -8,10 +8,10 @@ export class Validate implements IValidateUserProtocol {
     private validateJSAdapter: ValidateJSAdapter
   ) {}
 
-  createUserValidate(data: ICreateUserDTO): boolean {
-    return this.validateJSAdapter.createUserValidate(data)
+  createUserValidate(data: ICreateUserDTO): void {
+    this.validateJSAdapter.createUserValidate(data)
   }
-  createSessionValidate(data: ICreateSessionDTO): boolean {
-    return this.validateJSAdapter.createSessionValidate(data)
+  createSessionValidate(data: ICreateSessionDTO): void {
+    this.validateJSAdapter.createSessionValidate(data)
   }
 }

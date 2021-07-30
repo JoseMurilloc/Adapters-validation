@@ -1,5 +1,7 @@
 import { CreateUserUseCase } from './CreateUserUseCase'
 import { Request, Response } from 'express'
+import { AppValidateError } from '@errors/AppValidateError';
+import { AppError } from '@errors/AppError';
 
 class CreateUserController {
   constructor(
@@ -18,7 +20,28 @@ class CreateUserController {
 
       return response.status(201).json(user);
     } catch (err) {
-      return response.status(400).json({ error: err.message});
+      if (err instanceof AppValidateError) {
+        return response.status(err.statusCode).json({
+          status: 'error validate',
+          errors: err.errors
+        })
+      }
+
+      if (err instanceof AppError) {
+        return response.status(err.statusCode).json({
+          status: 'error',
+          message: err.message
+        })
+      }
+
+    console.error(`🎯 Error message: ${err.message}`)
+    console.error(err)
+
+
+    return response.status(500).json({
+      status: 'error',
+      message: 'Internal error server'
+    })
     }
   }
 

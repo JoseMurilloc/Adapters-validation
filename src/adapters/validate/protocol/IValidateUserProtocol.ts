@@ -2,6 +2,6 @@ import { ICreateSessionDTO } from "@useCases/User/CreateSession/ICreateSessionDT
 import { ICreateUserDTO } from "@useCases/User/CreateUser/ICreateUserDTO";
 
 export interface IValidateUserProtocol {
-  createUserValidate(data: ICreateUserDTO) : boolean;
-  createSessionValidate(data: ICreateSessionDTO): boolean;
+  createUserValidate(data: ICreateUserDTO) : void;
+  createSessionValidate(data: ICreateSessionDTO): void;
 }
