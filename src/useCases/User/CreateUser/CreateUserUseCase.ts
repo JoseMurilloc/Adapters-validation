@@ -9,17 +9,9 @@ class CreateUserUseCase {
   constructor(
     private userRepository: IUserRepository,
     private crypt: Crypt,
-    private validate: Validate,
   ) { }
 
   async execute(data: ICreateUserDTO) {
-
-    this.validate.createUserValidate({
-      email: data.email,
-      password: data.password,
-      name: data.name,
-    })
-
 
     const userAlreadyExists = await this.userRepository.findByEmail(data.email);
 

@@ -2,16 +2,24 @@ import { CreateUserUseCase } from './CreateUserUseCase'
 import { Request, Response } from 'express'
 import { AppValidateError } from '@errors/AppValidateError';
 import { AppError } from '@errors/AppError';
+import { Validate } from '@adapters/validate';
 
 class CreateUserController {
   constructor(
     private createUserUseCase: CreateUserUseCase,
+    private validate: Validate
   ) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, email, password } = request.body;
-
     try {
+      const { name, email, password } = request.body;
+
+      this.validate.createUserValidate({
+        email,
+        password,
+        name,
+      })
+
       const user = await this.createUserUseCase.execute({
         name,
         email,

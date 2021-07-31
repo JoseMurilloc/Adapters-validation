@@ -17,8 +17,10 @@ const validate = new Validate(validateJSAdapter)
 const createUserUseCase = new CreateUserUseCase(
   postgresUsersRepository,
   crypt,
+)
+const createUserController = new CreateUserController(
+  createUserUseCase,
   validate
 )
-const createUserController = new CreateUserController(createUserUseCase)
 
 export { createUserController }
