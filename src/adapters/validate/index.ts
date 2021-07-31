@@ -1,17 +1,19 @@
+import { AppValidateError, Errors } from "@errors/AppValidateError";
 import { ICreateSessionDTO } from "@useCases/User/CreateSession/ICreateSessionDTO";
 import { ICreateUserDTO } from "@useCases/User/CreateUser/ICreateUserDTO";
 import { ValidateJSAdapter } from "./adpaterImplementation/ValidateJSAdapter";
+import { YupAdapter } from "./adpaterImplementation/YupAdapter";
 import { IValidateUserProtocol } from "./protocol/IValidateUserProtocol";
 
 export class Validate implements IValidateUserProtocol {
   constructor(
-    private validateAdapter: ValidateJSAdapter
+    private validateAdapter: YupAdapter
   ) {}
 
-  createUserValidate(data: ICreateUserDTO): void {
-    this.validateAdapter.createUserValidate(data)
+  async createUserValidate(data: ICreateUserDTO): Promise<void> {
+    return this.validateAdapter.createUserValidate(data)
   }
-  createSessionValidate(data: ICreateSessionDTO): void {
-    this.validateAdapter.createSessionValidate(data)
+  async createSessionValidate(data: ICreateSessionDTO): Promise<void> {
+    return this.validateAdapter.createSessionValidate(data)
   }
 }

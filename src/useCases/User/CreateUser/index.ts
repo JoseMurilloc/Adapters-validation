@@ -5,14 +5,15 @@ import { Crypt } from "@adapters/crypt";
 import { BcrypeJSAdapter } from '@adapters/crypt/adapterImplementation/BcrypeJSAdapter'
 import { Validate } from "@adapters/validate";
 import { ValidateJSAdapter } from "@adapters/validate/adpaterImplementation/ValidateJSAdapter";
+import { YupAdapter } from "@adapters/validate/adpaterImplementation/YupAdapter";
 
 const postgresUsersRepository = new PostgresUsersRepository()
 
 const bcrypeJSAdapter = new BcrypeJSAdapter()
 const crypt = new Crypt(bcrypeJSAdapter)
 
-const validateJSAdapter = new ValidateJSAdapter()
-const validate = new Validate(validateJSAdapter)
+const validatejsAdapter = new YupAdapter()
+const validate = new Validate(validatejsAdapter)
 
 const createUserUseCase = new CreateUserUseCase(
   postgresUsersRepository,

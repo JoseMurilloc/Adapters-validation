@@ -1,14 +1,12 @@
-type Errors = {
+export type Errors = {
   [key: string]: string[]
 }
 
-
-export class AppValidateError {
-  public readonly errors : Errors;
-  public readonly statusCode : number;
-
-  constructor(errors: Errors, statusCode = 400) {
-    this.errors = errors;
-    this.statusCode = statusCode;
+export class AppValidateError extends Error {
+  constructor(
+    public errors: Errors,
+    public statusCode = 400
+  ) {
+    super()
   }
 }

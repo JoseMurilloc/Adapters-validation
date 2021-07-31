@@ -3,6 +3,7 @@ import { User } from "../../../entities/User";
 import { ICreateUserDTO } from "./ICreateUserDTO";
 import { Validate } from "@adapters/validate";
 import { Crypt } from "@adapters/crypt";
+import { AppError } from "@errors/AppError";
 
 class CreateUserUseCase {
 
@@ -16,7 +17,7 @@ class CreateUserUseCase {
     const userAlreadyExists = await this.userRepository.findByEmail(data.email);
 
     if (userAlreadyExists) {
-      throw new Error('User already exists.');
+      throw new AppError('User already exists.');
     }
 
     const { password, name, email } = data

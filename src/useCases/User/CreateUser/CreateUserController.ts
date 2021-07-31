@@ -1,5 +1,5 @@
 import { CreateUserUseCase } from './CreateUserUseCase'
-import { Request, Response } from 'express'
+import e, { Request, Response } from 'express'
 import { AppValidateError } from '@errors/AppValidateError';
 import { AppError } from '@errors/AppError';
 import { Validate } from '@adapters/validate';
@@ -14,7 +14,8 @@ class CreateUserController {
     try {
       const { name, email, password } = request.body;
 
-      this.validate.createUserValidate({
+
+    await this.validate.createUserValidate({
         email,
         password,
         name,
@@ -28,10 +29,11 @@ class CreateUserController {
 
       return response.status(201).json(user);
     } catch (err) {
+
       if (err instanceof AppValidateError) {
         return response.status(err.statusCode).json({
           status: 'error validate',
-          errors: err.errors
+          errors: err.errors,
         })
       }
 
