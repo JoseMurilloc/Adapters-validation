@@ -5,13 +5,13 @@ import { IValidateUserProtocol } from "./protocol/IValidateUserProtocol";
 
 export class Validate implements IValidateUserProtocol {
   constructor(
-    private validateJSAdapter: ValidateJSAdapter
+    private validateAdapter: ValidateJSAdapter
   ) {}
 
   createUserValidate(data: ICreateUserDTO): void {
-    this.validateJSAdapter.createUserValidate(data)
+    this.validateAdapter.createUserValidate(data)
   }
   createSessionValidate(data: ICreateSessionDTO): void {
-    this.validateJSAdapter.createSessionValidate(data)
+    this.validateAdapter.createSessionValidate(data)
   }
 }

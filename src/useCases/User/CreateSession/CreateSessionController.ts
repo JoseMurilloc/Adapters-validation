@@ -3,13 +3,13 @@ import { Request, Response } from 'express'
 
 class CreateSessionController {
   constructor(
-    private createUserUseCase: CreateSessionUseCase,
+    private createSessionUseCase: CreateSessionUseCase,
   ) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, email, password } = request.body;
-
     try {
+      const { email, password } = request.body;
+
       return response.status(201).json();
     } catch (err) {
       return response.status(400).json({ error: err.message});
