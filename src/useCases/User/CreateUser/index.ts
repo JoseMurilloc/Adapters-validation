@@ -12,8 +12,8 @@ const postgresUsersRepository = new PostgresUsersRepository()
 const bcrypeJSAdapter = new BcrypeJSAdapter()
 const crypt = new Crypt(bcrypeJSAdapter)
 
-const validatejsAdapter = new YupAdapter()
-const validate = new Validate(validatejsAdapter)
+const validateAdapter = new YupAdapter()
+const validate = new Validate(validateAdapter)
 
 const createUserUseCase = new CreateUserUseCase(
   postgresUsersRepository,

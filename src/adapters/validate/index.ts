@@ -1,4 +1,3 @@
-import { AppValidateError, Errors } from "@errors/AppValidateError";
 import { ICreateSessionDTO } from "@useCases/User/CreateSession/ICreateSessionDTO";
 import { ICreateUserDTO } from "@useCases/User/CreateUser/ICreateUserDTO";
 import { ValidateJSAdapter } from "./adpaterImplementation/ValidateJSAdapter";

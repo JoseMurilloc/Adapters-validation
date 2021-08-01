@@ -1,5 +1,5 @@
 import { CreateUserUseCase } from './CreateUserUseCase'
-import e, { Request, Response } from 'express'
+import { Request, Response } from 'express'
 import { AppValidateError } from '@errors/AppValidateError';
 import { AppError } from '@errors/AppError';
 import { Validate } from '@adapters/validate';
