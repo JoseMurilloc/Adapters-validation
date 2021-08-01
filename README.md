@@ -1,8 +1,18 @@
 # Adapters (Design patterns)
-<h3>
-	🚧  Under construction...  🚧
+<img src="./.github/Logo.png" alt="Logo" />
+
+<h3 style="font-style: italic; color: #999">
+  Respoitorio com intuito estudar um padrão de projeto
+  <br/>
+	🚧  Ainda em construção...  🚧
 </h3>
 
+
+<br />
+Nesse projeto podemos escolher qual implementação de validação de de dados de forma que nossa camada principal não irá mudar graças aos conceitos de adaperts
+
+
+---
 ![https://refactoring.guru/images/patterns/content/adapter/adapter-pt-br.png](https://refactoring.guru/images/patterns/content/adapter/adapter-pt-br.png)
 
 ## 📝Anotações
