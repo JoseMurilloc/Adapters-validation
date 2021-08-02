@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 import { AppValidateError } from '@errors/AppValidateError';
 import { AppError } from '@errors/AppError';
 import { Validate } from '@adapters/validate';
+import { catchError } from '../../../utils/handleErrors'
 
 class CreateUserController {
   constructor(
@@ -10,12 +11,13 @@ class CreateUserController {
     private validate: Validate
   ) { }
 
+
+  // @catchError
   async handle(request: Request, response: Response): Promise<Response> {
     try {
       const { name, email, password } = request.body;
 
-
-    await this.validate.createUserValidate({
+      await this.validate.createUserValidate({
         email,
         password,
         name,
