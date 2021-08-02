@@ -10,12 +10,13 @@ export class PostgresUsersRepository implements IUserRepository {
     this.userDbConnection = connection
   }
 
-  async findByEmail(email: string): Promise<User> {
-    const user = this.userDbConnection
-      .select<User>('*')
+  async findByEmail(email: string): Promise<Omit<User, 'password'>> {
+    const user = await this.userDbConnection
+      .select<Omit<User, 'password'>>('name', 'email')
       .from('users')
       .where('email', email)
       .first()
+
 
     return user;
   }
@@ -24,7 +25,7 @@ export class PostgresUsersRepository implements IUserRepository {
     try {
       await this.userDbConnection.insert(user).into('users')
     } catch(err) {
-      throw new Error(err)
+      throw new Error({...err, message: err.message})
     }
   }
 }
