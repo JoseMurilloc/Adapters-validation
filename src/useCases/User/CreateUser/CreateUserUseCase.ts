@@ -1,7 +1,6 @@
 import { IUserRepository } from "@repositories/user/IUserRepository";
 import { User } from "../../../entities/User";
 import { ICreateUserDTO } from "./ICreateUserDTO";
-import { Validate } from "@adapters/validate";
 import { Crypt } from "@adapters/crypt";
 import { AppError } from "@errors/AppError";
 
@@ -30,9 +29,12 @@ class CreateUserUseCase {
       name,
     });
 
-
     await this.userRepository.save(user)
-    return user
+
+    return {
+      name: user.name,
+      email: user.email,
+    }
   }
 }
 
