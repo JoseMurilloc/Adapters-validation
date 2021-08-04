@@ -1,6 +1,6 @@
 import { CreateSessionController } from "./CreateSessionController";
 import { CreateSessionUseCase } from "./CreateSessionUseCase";
-import { PostgresUsersRepository } from "../../../repositories/user/implementations/PostgresUsersRepository";
+import { PostgresUsersRepository } from "@repositories/user/implementations/PostgresUsersRepository";
 
 const postgresUsersRepository = new PostgresUsersRepository()
 
